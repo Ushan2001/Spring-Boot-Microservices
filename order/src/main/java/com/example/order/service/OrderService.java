@@ -4,6 +4,7 @@ import com.example.order.dto.OrderDTO;
 import com.example.order.model.Orders;
 import com.example.order.repo.OrderRepo;
 import jakarta.transaction.Transactional;
+import org.aspectj.weaver.ast.Or;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,21 @@ public class OrderService {
         List<Orders> ordersList = orderRepo.findAll();
         return modelMapper.map(ordersList, new TypeToken<List<OrderDTO>>(){
         }.getType());
+    }
+
+    public OrderDTO saveOrder(OrderDTO orderDTO){
+        orderRepo.save(modelMapper.map(orderDTO, Orders.class));
+        return orderDTO;
+    }
+
+    public OrderDTO updateOrder(OrderDTO orderDTO){
+        orderRepo.save(modelMapper.map(orderDTO, Orders.class));
+        return orderDTO;
+    }
+
+    public String deleteOrder(Integer orderId) {
+        orderRepo.deleteById(orderId);
+        return "Order Deleted Successfully";
     }
 
 

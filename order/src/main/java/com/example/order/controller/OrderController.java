@@ -3,10 +3,7 @@ package com.example.order.controller;
 import com.example.order.dto.OrderDTO;
 import com.example.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +17,22 @@ public class OrderController {
 
     @GetMapping("/getorders")
     public List<OrderDTO> getOrders() {
-        return  orderService.getAllOrders();
+        return orderService.getAllOrders();
     }
+
+    @PostMapping("/addorder")
+    public OrderDTO savaOrder(@RequestBody OrderDTO orderDTO) {
+        return orderService.saveOrder(orderDTO);
+    }
+
+    @PutMapping("/updateorder")
+    public OrderDTO updateOrder(@RequestBody OrderDTO orderDTO) {
+        return orderService.updateOrder(orderDTO);
+    }
+
+    @DeleteMapping("/deleteorder/{orderId}")
+    public String deleteOrder(@PathVariable Integer orderId) {
+        return orderService.deleteOrder(orderId);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.order.controller;
 
+import com.example.order.common.orderResponse;
 import com.example.order.dto.OrderDTO;
 import com.example.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class OrderController {
     }
 
     @PostMapping("/addorder")
-    public OrderDTO savaOrder(@RequestBody OrderDTO orderDTO) {
+    public orderResponse savaOrder(@RequestBody OrderDTO orderDTO) {
         return orderService.saveOrder(orderDTO);
     }
 

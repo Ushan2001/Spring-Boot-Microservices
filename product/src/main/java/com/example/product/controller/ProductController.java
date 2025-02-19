@@ -30,7 +30,7 @@ public class ProductController {
         return  productService.updateProduct(productDTO);
     }
 
-    @DeleteMapping("/deletepoduct/{productId}")
+    @DeleteMapping("/deleteproduct/{productId}")
     public String deleteProduct(@PathVariable Integer productId){
         return productService.deleteProduct(productId);
     }
